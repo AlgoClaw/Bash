@@ -4,7 +4,7 @@
 sudo apt install -y samba samba-common-bin
 
 # Delete Existing smb.conf
-#sudo rm -f "/etc/samba/smb.conf"
+sudo rm -f "/etc/samba/smb.conf"
 
 # Generate smb.conf
 sudo tee -a "/etc/samba/smb.conf" > /dev/null <<EOT
