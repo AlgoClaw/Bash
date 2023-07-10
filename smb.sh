@@ -35,10 +35,7 @@ sudo tee -a "/etc/samba/smb.conf" > /dev/null <<EOT
 EOT
 
 # Services
-sudo service smbd enable
 sudo service smbd reload
 sudo service smbd restart
-
-sudo service nmbd enable
 sudo service nmbd reload
 sudo service nmbd restart
