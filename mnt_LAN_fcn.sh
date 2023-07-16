@@ -1,21 +1,25 @@
 #!/bin/bash
 
-LOCDIR="${1}"
-REMDIR="${2}"
-USNAME="${3:-a}"
-PASSWD="${4}"
-PORTNO="${5:-445}"
+# Example Usage
+# "/path/to/script/mnt_LAN_fcn.sh" "/path/to/local/mnt" "192.168.xx.xx" "/path/to/remote/dir" "username" "password"
+
+LOCDIR="${1%/}"
+REMIPA="${2}"
+REMDIR="${3%/}"
+USNAME="${4:-a}"
+PASSWD="${5}"
+PORTNO="${6:-445}"
 
 # Install Dependencies
 sudo apt install -y net-tools cifs-utils & wait >/dev/null
 
 # Wait for Live LAN Connection (30 seconds max)
-i=0
-until ifconfig | grep -F "192.168" >/dev/null
+i=1
+while ! timeout 1 ping -c 1 -n "${REMIPA}" &> /dev/null
 do
-	sleep 1 >/dev/null
 	((i=i+1))
-	if [ $i -gt 30 ]
+	printf $i
+	if [ $i -gt 20 ]
 	then
 		break
 	fi
@@ -34,7 +38,7 @@ sudo mkdir -p "${LOCDIR}" & wait >/dev/null
 sudo chattr +i "${LOCDIR}" & wait >/dev/null
 
 # Mount Remote Directory to Local Mountpoint
-sudo mount -t cifs -o port="${PORTNO}",username="${USNAME}",password="${PASSWD}" "${REMDIR}" "${LOCDIR}" >/dev/null
+sudo mount -t cifs -o port="${PORTNO}",username="${USNAME}",password="${PASSWD}" "//${REMIPA}${REMDIR}" "${LOCDIR}" >/dev/null
 
 # Unlock Writes to Mountpoint (if mounted)
 mountpoint -q "${LOCDIR}" && sudo chattr -i "${LOCDIR}" & wait >/dev/null
