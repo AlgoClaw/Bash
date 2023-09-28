@@ -4,8 +4,11 @@
 sudo apt install -y dos2unix mergerfs & wait
 
 # Set Permissions
-sudo dos2unix /Scripts/*.sh
-sudo chmod +x /Scripts/*.sh
+sudo dos2unix /Scripts/*.sh & wait
+sudo chmod +x /Scripts/*.sh & wait
+
+# Make /usr/local/bin if it does not exist already
+sudo mkdir -p /usr/local/bin & wait
 
 # Virtually Merge /Docker/Scripts/ with /usr/local/bin/ (better than symbolic links)
 sudo mergerfs -o nonempty,allow_other,use_ino "/Scripts" "/usr/local/bin" & wait
