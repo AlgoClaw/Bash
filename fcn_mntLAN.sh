@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Example Usage
-# "/path/to/script/mnt_LAN_fcn.sh" "/path/to/local/mnt" "192.168.xx.xx" "/path/to/remote/dir" "username" "password"
+# sudo bash fcn_mntLAN.sh "/path/to/local/mnt" "192.168.xx.xx" "/path/to/remote/dir" "username" "password" "port"
+# sudo bash fcn_mntLAN.sh "/mnt/LAN/ABC" "192.168.56.78" "/root"
 
 LOCDIR="${1%/}"
 REMIPA="${2}"
