@@ -14,6 +14,8 @@ sudo cp -RT /Scripts/fcns /Scripts & wait
 
 sudo rm -r /Scripts/fcns & wait
 
+sudo rm -r /Scripts/.git & wait
+
 sudo bash /Scripts/FinalizeScripts.sh
 
 sudo cp /Scripts/README.md /Scripts/update_scripts.sh
