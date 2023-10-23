@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sudo bash fcn_sync2way /path/to/dir1 /path/to/dir2
+# sudo bash "/path/to/fcn_sync2way.sh" "/path/to/dir1" "/path/to/dir2"
 
 DIR1=${1%/}/
 DIR2=${2%/}/
