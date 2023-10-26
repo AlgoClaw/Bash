@@ -7,6 +7,12 @@ sudo apt install -y dos2unix mergerfs & wait
 sudo dos2unix /Scripts/*.sh & wait
 sudo chmod +x /Scripts/*.sh & wait
 
+# Copy contents of /usr/local/bin to /Scripts
+sudo cp -RT /usr/local/bin /Scripts & wait
+
+# Delete /usr/local/bin
+sudo rm -f /usr/local/bin & wait
+
 # Make /usr/local/bin if it does not exist already
 sudo mkdir -p /usr/local/bin & wait
 
