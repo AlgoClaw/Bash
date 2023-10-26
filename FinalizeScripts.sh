@@ -11,8 +11,8 @@ sudo chmod +x /Scripts/*.sh & wait
 sudo mkdir -p /usr/local/bin & wait
 
 # Virtually Merge /Docker/Scripts/ with /usr/local/bin/ (better than symbolic links)
-sudo mergerfs -o nonempty,allow_other,use_ino "/Scripts" "/usr/local/bin" & wait
-sudo umount "/usr/local/bin"
+sudo mergerfs -o nonempty,allow_other,use_ino "/Scripts" "/usr/local/bin"
+#sudo umount "/usr/local/bin"
 
 # Make Symbolic Links in /usr/local/bin
 #sudo ln -sf /Scripts/* /usr/local/bin
