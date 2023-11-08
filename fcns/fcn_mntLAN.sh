@@ -11,35 +11,28 @@ PASSWD="${5}"
 PORTNO="${6:-445}"
 
 # Install Dependencies
-sudo apt install -y net-tools cifs-utils >/dev/null && \
+sudo apt-get install -y net-tools cifs-utils >/dev/null && \
 
 # Check if directory exists, if not, make it.
-if [ -d "${LOCDIR}" ]; then
-  continue
-else
-  sudo mkdir -p "${LOCDIR}" >/dev/null && \
-fi
+sudo mkdir -p "${LOCDIR}" >/dev/null
 
 # Exit if Something is mounted to LOCDIR already
 if [[ $(sudo bash "/Scripts/fcn_chckmnt.sh" "${LOCDIR}") == 1 ]]; then
   echo "Directory Mounted Already. Exiting"
   exit
-else
-  continue
 fi
 
-# Exit if LOCDIR is NOT empty
+# If LOCDIR is NOT empty, lock it and exit. If empty, unlock it.
 if [[ $(sudo bash "/Scripts/fcn_chckdir4contents.sh" "${LOCDIR}") == 1 ]]; then
   echo "Directory is NOT Empty, Locking Directory and Exiting"
   sudo chattr +i "${LOCDIR}"
   exit
 else
   sudo chattr -i "${LOCDIR}"
-  continue
 fi
 
-# Exit if IP is unreachable
-ping -c 1 -n "${REMIPA}" >/dev/null || exit
+# Exit if IP is Unreachable
+ping -c 1 -n "${REMIPA}" >/dev/null || { echo "IP unreachable"; exit; }
 
 # Mount Remote Directory to Local Mountpoint
 sudo mount -t cifs -o port="${PORTNO}",username="${USNAME}",password="${PASSWD}" "//${REMIPA}${REMDIR}" "${LOCDIR}" >/dev/null
