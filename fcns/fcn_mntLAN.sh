@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# sudo bash fcn_mntLAN.sh "/path/to/local/mnt" "192.168.xx.xx" "/path/to/remote/dir" "username" "password" "port"
-# sudo bash fcn_mntLAN.sh "/mnt/LAN/ABC" "192.168.56.78" "/root"
+# sudo bash "/Scripts/fcn_mntLAN.sh" "/path/to/local/mnt" "192.168.xx.xx" "/path/to/remote/dir" "username" "password" "port"
+# sudo bash "/Scripts/fcn_mntLAN.sh" "/mnt/LAN/ABC" "192.168.56.78" "/root"
 
 LOCDIR="${1%/}"
 REMIPA="${2}"
@@ -11,34 +11,35 @@ PASSWD="${5}"
 PORTNO="${6:-445}"
 
 # Install Dependencies
-sudo apt install -y net-tools cifs-utils & wait >/dev/null
+sudo apt install -y net-tools cifs-utils >/dev/null && \
 
-# Wait for Live LAN Connection (30 seconds max)
-i=1
-while ! timeout 1 ping -c 1 -n "${REMIPA}" &> /dev/null
-do
-	((i=i+1))
-	printf $i
-	if [ $i -gt 20 ]
-	then
-		break
-	fi
-done
+# Check if directory exists, if not, make it.
+if [ -d "${LOCDIR}" ]; then
+  continue
+else
+  sudo mkdir -p "${LOCDIR}" >/dev/null && \
+fi
 
-# Unlock Writes to Mountpoint (if nothing is mounted)
-mountpoint -q "${LOCDIR}" || sudo chattr -i "${LOCDIR}" & wait >/dev/null
+# Exit if Something is mounted to LOCDIR already
+if [[ $(sudo bash "/Scripts/fcn_chckmnt.sh" "${LOCDIR}") == 1 ]]; then
+  echo "Directory Mounted Already. Exiting"
+  exit
+else
+  continue
+fi
 
-# Delete Mountpoint and All Contents (if nothing is mounted)
-mountpoint -q "${LOCDIR}" || sudo rm -r "${LOCDIR}" & wait >/dev/null
+# Exit if LOCDIR is NOT empty
+if [[ $(sudo bash "/Scripts/fcn_chckdir4contents.sh" "${LOCDIR}") == 1 ]]; then
+  echo "Directory is NOT Empty, Locking Directory and Exiting"
+  sudo chattr +i "${LOCDIR}"
+  exit
+else
+  sudo chattr -i "${LOCDIR}"
+  continue
+fi
 
-# Create Mountpoint Directory (if it does not exist already)
-sudo mkdir -p "${LOCDIR}" & wait >/dev/null
-
-# Lock Writes to Mountpoint
-sudo chattr +i "${LOCDIR}" & wait >/dev/null
+# Exit if IP is unreachable
+ping -c 1 -n "${REMIPA}" >/dev/null || exit
 
 # Mount Remote Directory to Local Mountpoint
 sudo mount -t cifs -o port="${PORTNO}",username="${USNAME}",password="${PASSWD}" "//${REMIPA}${REMDIR}" "${LOCDIR}" >/dev/null
-
-# Unlock Writes to Mountpoint (if mounted)
-mountpoint -q "${LOCDIR}" && sudo chattr -i "${LOCDIR}" & wait >/dev/null
