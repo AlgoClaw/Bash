@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install Samba
-sudo apt install -y samba samba-common-bin
+sudo DEBIAN_FRONTEND=noninteractive apt install -y samba samba-common-bin
 
 # Delete Existing smb.conf
 sudo rm -f "/etc/samba/smb.conf"
