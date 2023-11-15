@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt update && \
 sudo apt install -y git && \
 sudo rm -f /Scripts_tmp && \
 sudo git clone https://github.com/AlgoClaw/Bash /Scripts_tmp && \
