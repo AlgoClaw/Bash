@@ -6,7 +6,7 @@
 sudo steamos-readonly disable
 
 # Install Samba
-sudo pacman -S --noconfirm samba --overwrite '*'
+sudo pacman -Sy --noconfirm samba --overwrite '*'
 
 # Enable SMB Services
 sudo systemctl enable smb nmb
