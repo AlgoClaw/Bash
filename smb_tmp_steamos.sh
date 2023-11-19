@@ -3,13 +3,13 @@
 # use via "sudo su"
 
 # Disable SteamOS Ready-Only
-steamos-readonly disable
+sudo steamos-readonly disable
 
 # Install Samba
-pacman -S --noconfirm samba --overwrite '*'
+sudo pacman -S --noconfirm samba --overwrite '*'
 
 # Enable SMB Services
-systemctl enable smb nmb
+sudo systemctl enable smb nmb
 
 # Delete Existing smb.conf
 sudo rm -f "/etc/samba/smb.conf"
@@ -43,4 +43,4 @@ sudo tee -a "/etc/samba/smb.conf" > /dev/null <<EOT
 EOT
 
 # Start Services
-systemctl start smb nmb
+sudo systemctl start smb nmb
