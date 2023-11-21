@@ -1,4 +1,4 @@
-1) Create "/update_scripts.sh"
+1) Create and execute "/update_scripts.sh"
 
    sudo rm -f "/update_scripts.sh"
 
@@ -20,7 +20,7 @@
    
 -------------------------------
 
-2) Run "/update_scripts.sh" on boot
+2) Automatically execute "/update_scripts.sh" on boot
    
    sudo crontab -e
    
