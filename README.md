@@ -19,7 +19,11 @@
 -------------------------------
 
 2) Run "/update_scripts.sh" on boot
+   
    sudo crontab -e
+   
    --- paste in ----
+   
    @reboot sh "/update_scripts.sh"
+   
    --- save & exit ----
