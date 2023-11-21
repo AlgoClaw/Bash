@@ -8,7 +8,7 @@ sudo dos2unix /Scripts/*.sh & wait
 sudo chmod +x /Scripts/*.sh & wait
 
 # Copy contents of /usr/local/bin to /Scripts
-sudo cp -RT /usr/local/bin /Scripts & wait
+sudo cp -RTn /usr/local/bin /Scripts & wait
 
 # Delete /usr/local/bin
 sudo rm -r /usr/local/bin & wait
