@@ -8,6 +8,13 @@ sudo rm -r /Scripts_tmp && \
 sudo cp -RT /Scripts/fcns /Scripts && \
 sudo rm -r /Scripts/fcns && \
 sudo rm -r /Scripts/.git && \
-sudo bash /Scripts/FinalizeScripts.sh && \
 sudo cp /Scripts/README.md /Scripts/update_scripts.sh && \
-sudo rm -r /Scripts/README.md
+sudo rm -r /Scripts/README.md  && \
+sudo umount "/usr/local/bin"  & wait
+sudo umount "/usr/local/bin"  & wait
+sudo cp -RTn /usr/local/bin /Scripts && \
+sudo rm /usr/local/bin/* & wait
+sudo apt install -y dos2unix mergerfs & wait
+sudo dos2unix /Scripts/*.sh & wait
+sudo chmod +x /Scripts/*.sh & wait
+sudo mergerfs -o nonempty,allow_other,use_ino "/Scripts" "/usr/local/bin"
