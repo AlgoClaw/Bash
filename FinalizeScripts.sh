@@ -14,7 +14,7 @@ sudo cp -RTn /usr/local/bin /Scripts & wait
 sudo umount /usr/local/bin & wait
 
 # Delete /usr/local/bin
-sudo rm -r /usr/local/bin & wait
+sudo rm  /usr/local/bin/* & wait
 
 # Make /usr/local/bin if it does not exist already
 sudo mkdir -p /usr/local/bin & wait
