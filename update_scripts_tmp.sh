@@ -1,10 +1,11 @@
 #!/bin/bash
 #
-#sudo rm -r /Scripts_tmp > /dev/null 2>&1
-#sudo git clone https://github.com/AlgoClaw/Bash /Scripts_tmp > /dev/null 2>&1
-#sudo cp -RTf /Scripts_tmp /Scripts
-#sudo rm -r /Scripts_tmp
-sudo git clone https://github.com/AlgoClaw/Bash /Scripts > /dev/null 2>&1
+sudo rm -r /Scripts_tmp > /dev/null 2>&1
+sudo git clone https://github.com/AlgoClaw/Bash /Scripts_tmp > /dev/null 2>&1
+sudo rm -r /Scripts_tmp/.git
+sudo rm -f /Scripts_tmp/README.md
+sudo cp -RTf /Scripts_tmp /Scripts
+sudo rm -r /Scripts_tmp
 #
 sudo apt install -y dos2unix > /dev/null 2>&1
 sudo dos2unix /Scripts/*.sh > /dev/null 2>&1
