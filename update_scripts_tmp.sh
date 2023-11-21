@@ -2,10 +2,6 @@
 #
 sudo rm -r /Scripts_tmp > /dev/null 2>&1
 sudo git clone https://github.com/AlgoClaw/Bash /Scripts_tmp > /dev/null 2>&1
-sudo rm -r /Scripts_tmp/.git
-sudo rm -f /Scripts_tmp/README.md
-sudo cp -RTf /Scripts_tmp/fcns /Scripts_tmp
-sudo rm -r /Scripts_tmp/fcns
 sudo cp -RTf /Scripts_tmp /Scripts
 sudo rm -r /Scripts_tmp
 #
