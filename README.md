@@ -8,7 +8,6 @@ sudo rm -r /Scripts_tmp && \
 sudo cp -RT /Scripts/fcns /Scripts && \
 sudo rm -r /Scripts/fcns && \
 sudo rm -r /Scripts/.git && \
-sudo umount /usr/local/bin && \
 sudo bash /Scripts/FinalizeScripts.sh && \
 sudo cp /Scripts/README.md /Scripts/update_scripts.sh && \
 sudo rm -r /Scripts/README.md
