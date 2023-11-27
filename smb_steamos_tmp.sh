@@ -8,9 +8,6 @@ sudo steamos-readonly disable
 # Install Samba
 sudo pacman -Sy --noconfirm samba --overwrite '*'
 
-# Enable SMB Services
-sudo systemctl enable smb nmb
-
 # Delete Existing smb.conf
 sudo rm -f "/etc/samba/smb.conf"
 
@@ -42,5 +39,7 @@ sudo tee -a "/etc/samba/smb.conf" > /dev/null <<EOT
    force directory mode = 0777
 EOT
 
-# Start Services
+# Enable, Start, Restart Services
+sudo systemctl enable smb nmb
 sudo systemctl start smb nmb
+sudo systemctl restart smb nmb
