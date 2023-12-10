@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install Dependencies
-sudo apt install -y dos2unix
+sudo DEBIAN_FRONTEND=noninteractive apt install -y dos2unix
 sudo pacman -Sy --noconfirm dos2unix --overwrite '*'
 
 # Set Permissions
