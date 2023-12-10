@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt install -y rsync && \
+sudo apt install -y rsync \
 
 DIR1=${1%/}/
 DIR2=${2%/}/
