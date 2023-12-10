@@ -17,13 +17,13 @@ sudo apt-get install -y net-tools cifs-utils >/dev/null && \
 sudo mkdir -p "${LOCDIR}" >/dev/null
 
 # Exit if Something is mounted to LOCDIR already
-if [[ $(sudo bash "/Scripts/fcn_chckmnt.sh" "${LOCDIR}") == 1 ]]; then
+if [[ $(sudo bash "${0%/*}"/fcn_chckmnt.sh "${LOCDIR}") == 1 ]]; then
   echo "Directory Mounted Already. Exiting"
   exit
 fi
 
 # If LOCDIR is NOT empty, lock it and exit. If empty, unlock it.
-if [[ $(sudo bash "/Scripts/fcn_chckdir4contents.sh" "${LOCDIR}") == 1 ]]; then
+if [[ $(sudo bash "${0%/*}"/fcn_chckdir4contents.sh "${LOCDIR}") == 1 ]]; then
   echo "Directory is NOT Empty, Locking Directory and Exiting"
   sudo chattr +i "${LOCDIR}"
   exit
