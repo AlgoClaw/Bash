@@ -13,7 +13,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt install -y rsync
 sudo pacman -Sy --noconfirm rsync
 
 #### Generate List of Files to Update
-sudo rsync --append-verify --partial --progress --archive --relative --update --itemize-changes --dry-run "${DIR1}./" "${DIR2}" > "${updates_file}"
+sudo rsync --append-verify --partial --archive --relative --update --itemize-changes --dry-run "${DIR1}./" "${DIR2}" > "${updates_file}"
 
 #### Remove Lines That Include "sending incremental file list"
 sed -i '/^sending incremental file list/d' "${updates_file}"
