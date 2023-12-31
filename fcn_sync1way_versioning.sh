@@ -8,35 +8,32 @@ DIR2=${2%/}/
 datetimefile=$(date +%F_%H-%M-%S)
 updates_file="updates"
 
-#### Install Dependencies
+#### install dependencies
 sudo DEBIAN_FRONTEND=noninteractive apt install -y rsync
 sudo pacman -Sy --noconfirm rsync
 
-#### Generate List of Files to Update
+#### generate list of files to update (files on destination that would be modified/overwritten)
 sudo rsync --append-verify --partial --archive --relative --update --itemize-changes --dry-run "${DIR1}./" "${DIR2}" > "${updates_file}"
 
-#### Remove Lines That Include "sending incremental file list"
+#### remove lines that include "sending incremental file list"
 sed -i '/^sending incremental file list/d' "${updates_file}"
 
-#### Remove Lines That Include "f+++++++++"
+#### remove lines that include "f+++++++++"
 sed -i '/^>f+++++++++/d' "${updates_file}"
 
-#### Remove Lines That Ending With "/" (directories)
+#### remove lines that end with "/" (directories)
 sed -i '/\/$/d' "${updates_file}"
 
-#### Remove Everything Up to (and including) First Space in Each Line
+#### remove everything up to (and including) first space in each line
 sed -i 's/[^ ]* //' "${updates_file}"
 
-#### "${updates_file}" should now be an easily readable list of files that would be overwritten
+#### "${updates_file}" should now be an easily readable list of files that would be overwritten on the destination
 
-#### Copy "${updates_file}"
-cp "${updates_file}" "${updates_file}_datestring”
-
-#### Add Date String to List of Files
-#sed -i "s/$/_${datetimefile}/" "${updates_file}_datestring”
-
-#### Rename Existing Files in Backup Location
+#### rename files, on the destination, that would be overwritten
 while IFS= read -r file; do mv "${DIR2}${file}" "${DIR2}${file}_${datetimefile}"; done < "${updates_file}"
 
-#### Copy Over Files
+#### copy files from source to destination
 sudo rsync --append-verify --partial --archive --relative --update "${DIR1}./" "${DIR2}"
+
+#### cleanup
+sudo rm -f "${updates_file}"
