@@ -36,8 +36,9 @@ while IFS= read -r file
 do
 	unixdatetime=$(date -r "${DIR2}${file}" +%s)
 	oldfilename="${DIR2}${file}"
-newfilename="${DIR2}${file}_${unixdatetime}"
-mv "${oldfilename}" "${newfilename}"
+	newfilename="${DIR2}${file}_${unixdatetime}"
+ 
+	mv "${oldfilename}" "${newfilename}"
 done < "${updates_file}"
 
 #### copy files from source to destination
