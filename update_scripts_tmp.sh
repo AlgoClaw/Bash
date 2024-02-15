@@ -8,7 +8,7 @@ SCRIPTDIR="/Scripts"
 sudo mkdir -p "${SCRIPTDIR}"
 #
 #### Download Latest Scripts from GitHub
-sudi apt install -y git
+sudo apt install -y git
 sudo rm -r /"${SCRIPTDIR}"_tmp > /dev/null 2>&1
 sudo git clone https://github.com/AlgoClaw/Bash /"${SCRIPTDIR}"_tmp > /dev/null 2>&1
 sudo rm -r /"${SCRIPTDIR}"_tmp/.git
