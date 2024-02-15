@@ -29,7 +29,7 @@ sudo rm "${DEFSCRDIR}"/* > /dev/null 2>&1
 #
 #### Merge All Subdirectories in $SCRIPTDIR to $DEFSCRDIR
 sudo apt install -y mergerfs > /dev/null 2>&1
-sudo mergerfs -o nonempty,allow_other "${EXSTNGDIR}"/ "${DEFSCRDIR}"/
+sudo mergerfs -o nonempty,allow_other "${SCRIPTDIR}"/ "${DEFSCRDIR}"/
 #
 # Make All of the Files Linux Readable
 sudo apt install -y dos2unix > /dev/null 2>&1
