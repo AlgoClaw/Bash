@@ -6,5 +6,5 @@ sudo pacman -Sy --noconfirm dos2unix --overwrite '*'
 
 # Set Permissions
 shopt -s globstar
-sudo dos2unix "${0%/*}"/**
-sudo chmod +x -R "${0%/*}"/*.sh
+sudo dos2unix "${0%/*}"/**/*
+sudo chmod +x -R "${0%/*}"/**/*
