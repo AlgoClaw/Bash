@@ -3,6 +3,7 @@
    sudo rm -f "/update_scripts.sh"
 
    sudo tee -a "/update_scripts.sh" > /dev/null <<EOT
+
    #!/bin/bash
    
    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y git > /dev/null 2>&1
