@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo rm /Scripts/ftp_tmp.sh & wait
+SCRDIR="/Scripts"
 
-sudo curl https://raw.githubusercontent.com/AlgoClaw/Bash/main/ftp_tmp.sh --create-dirs -o /Scripts/ftp_tmp.sh & wait
+sudo curl https://raw.githubusercontent.com/AlgoClaw/Bash/main/ftp_tmp.sh --create-dirs -o "${SCRDIR}"/ftp_tmp.sh & wait
 
-sudo bash /Scripts/ftp_tmp.sh
+sudo bash "${SCRDIR}"/ftp_tmp.sh
