@@ -22,10 +22,4 @@
 
 2) Automatically execute "/update_scripts.sh" on boot
    
-   sudo crontab -e
-   
-   --- paste in ----
-   
-   @reboot sh "/update_scripts.sh"
-   
-   --- save & exit ----
+   sudo crontab -l | grep -q '@reboot sh "/update_scripts.sh"' || $((sudo crontab -l 2>/dev/null; echo '@reboot sh "/update_scripts.sh"') | sudo crontab -)
