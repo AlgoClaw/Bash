@@ -1,7 +1,9 @@
 #!/bin/bash
 
-sudo rm /Scripts/update_scripts_tmp.sh & wait
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y git > /dev/null 2>&1
 
-sudo curl https://raw.githubusercontent.com/AlgoClaw/Bash/main/update_scripts_tmp.sh --create-dirs -o /Scripts/update_scripts_tmp.sh & wait
+sudo curl https://raw.githubusercontent.com/AlgoClaw/Bash/main/update_scripts_tmp.sh --create-dirs -o /update_scripts_tmp.sh > /dev/null 2>&1
 
-sudo bash /Scripts/update_scripts_tmp.sh
+sudo bash /update_scripts_tmp.sh || sudo bash /Scripts/update_scripts_tmp.sh > /dev/null 2>&1
+
+sudo rm -f /update_scripts_tmp.sh > /dev/null 2>&1
