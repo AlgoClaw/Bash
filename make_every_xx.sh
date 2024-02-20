@@ -50,7 +50,7 @@ sudo crontab -l | grep -q "/Scripts/0_Every30Min.sh" || $((sudo crontab -l 2>/de
 sudo ls "/Scripts/0_Every60Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every60Min.sh" &>/dev/null <<EOT
 #!/bin/bash
 
-# sudo bash /Scripts/script.sh
+sudo bash /Scripts/Update_DDClient.sh
 EOT) &>/dev/null
 
 # Add 0_Every05Min.sh script to crontab
