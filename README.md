@@ -8,6 +8,6 @@ sudo bash make_boot.sh
 
 sudo bash make_every_xx.sh
 
-sudo bash user_to_sudoers.sh
+sudo bash users_to_sudoers.sh
 
-sudo bash user_to_hosts.sh
+sudo bash users_to_hosts.sh
