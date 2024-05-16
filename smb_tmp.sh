@@ -14,6 +14,11 @@ sudo tee -a "/etc/samba/smb.conf" > /dev/null <<EOT
    map to guest = BAD USER
    usershare allow guests = YES
    store dos attributes = NO
+   ea support = NO
+   map archive = NO
+   map hidden = NO
+   map system = NO
+   map readonly = NO
 
 [root]
    path = /
