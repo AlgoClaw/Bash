@@ -18,13 +18,13 @@ sudo mkdir -p "${LOCDIR}" >/dev/null
 
 # Exit if Something is mounted to LOCDIR already
 if [[ $(sudo bash "${0%/*}"/fcn_chckmnt.sh "${LOCDIR}") == 1 ]]; then
-  echo "Directory Mounted Already. Exiting"
+  echo "Mountpoint directory already mounted. Exiting. (${LOCDIR})"
   exit
 fi
 
 # If LOCDIR is NOT empty, lock it and exit. If empty, unlock it.
 if [[ $(sudo bash "${0%/*}"/fcn_chckdir4contents.sh "${LOCDIR}") == 1 ]]; then
-  echo "Directory is NOT Empty, Locking Directory and Exiting"
+  echo "Mountpoint directory is NOT empty. Locking directory (chattr +i). Exiting. (${LOCDIR})"
   sudo chattr +i "${LOCDIR}"
   exit
 else
@@ -32,7 +32,7 @@ else
 fi
 
 # Exit if IP is Unreachable
-ping -c 1 -n "${REMIPA}" >/dev/null || { echo "IP unreachable"; exit; }
+ping -c 1 -n "${REMIPA}" >/dev/null || { echo "Remote IP unreachable. Exiting. (${REMIPA} for ${LOCDIR})"; exit; }
 
 # Mount Remote Directory to Local Mountpoint
-sudo mount -t cifs -o port="${PORTNO}",username="${USNAME}",password="${PASSWD}" "//${REMIPA}${REMDIR}" "${LOCDIR}" >/dev/null
+sudo mount -t cifs -o port="${PORTNO}",username="${USNAME}",password="${PASSWD}" "//${REMIPA}${REMDIR}" "${LOCDIR}" >/dev/null && echo "Directory mounted at ${LOCDIR}"
