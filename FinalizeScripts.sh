@@ -4,8 +4,8 @@
 sudo DEBIAN_FRONTEND=noninteractive apt install -y dos2unix
 sudo pacman -Sy --noconfirm dos2unix --overwrite '*'
 
-# Get Script Direcotry
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+# Script Direcotry
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ) >/dev/null
 
 # Set Permissions
 shopt -s globstar
