@@ -5,6 +5,9 @@
 DIR1=${1%/}/
 DIR2=${2%/}/
 
+sudo mkdir -p ${DIR1}
+sudo mkdir -p ${DIR2}
+
 updates_file="onewaysyncupdatefile.txt"
 
 #### cleanup
