@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# fcn_mnt_USB_label.sh /path/to/mount/dir label
+# fcn_mntUSBlabel.sh /path/to/mount/dir label
 
 DIR="${1}"
 LBL="${2}"
