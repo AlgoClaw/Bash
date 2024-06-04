@@ -81,4 +81,18 @@ sudo ls "/Scripts/0_Every02AM.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every
 EOT) &>/dev/null
 
 # Add 0_Every02AM.sh script to crontab
-sudo crontab -l | grep -q "/Scripts/0_Every02AM.sh.sh" || $((sudo crontab -l 2>/dev/null; echo '*/0 2 * * * sh "/Scripts/0_Every02AM.sh"') | sudo crontab -)
+sudo crontab -l | grep -q "/Scripts/0_Every02AM.sh.sh" || $((sudo crontab -l 2>/dev/null; echo '0 2 * * * sh "/Scripts/0_Every02AM.sh"') | sudo crontab -)
+
+########
+######## Every 03 AM
+########
+
+# Make 0_Every03AM.sh script
+sudo ls "/Scripts/0_Every03AM.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every03AM.sh" &>/dev/null <<EOT
+#!/bin/bash
+
+EOT) &>/dev/null
+
+# Add 0_Every03AM.sh script to crontab
+sudo crontab -l | grep -q "/Scripts/0_Every03AM.sh.sh" || $((sudo crontab -l 2>/dev/null; echo '0 3 * * * sh "/Scripts/0_Every03AM.sh"') | sudo crontab -)
+
