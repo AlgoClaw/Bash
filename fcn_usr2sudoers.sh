@@ -10,9 +10,9 @@ else
 	user_empty=false
 fi
 
+str1="$USRSTR	ALL=(ALL:ALL) NOPASSWD:ALL"
+str2=$(sudo grep "${str1}" ${SUDOLOC} | tail -1)
 
-str1=$(sudo grep "$USRSTR	ALL=(ALL:ALL) NOPASSWD:ALL" ${SUDOLOC} | tail -1)
-str2=$(echo "$USRSTR	ALL=(ALL:ALL) NOPASSWD:ALL")
 if [ "${str1}" = "${str2}" ]; then
 	user_entryexist=true
 else
