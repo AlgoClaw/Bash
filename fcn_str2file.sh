@@ -21,7 +21,7 @@ else
 	empty_str=false
 fi
 
-# See if string already exists as an entire line
+# String already exists as a line?
 str2=$(sudo grep -x "${STR}" ${FILE} | tail -1)
 if [ "${STR}" = "${str2}" ]; then
 	exists=true
