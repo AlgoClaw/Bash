@@ -15,7 +15,8 @@ sudo systemctl start docker & wait
 
 # LAN Mounts
 sudo bash /Scripts/mnt_LAN.sh & wait
-EOT) &>/dev/null
+EOT
+) &>/dev/null
 
 # Add boot.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/boot.sh" || $((sudo crontab -l 2>/dev/null; echo '@reboot sh "/Scripts/boot.sh"') | sudo crontab -)
