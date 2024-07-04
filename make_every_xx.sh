@@ -9,7 +9,8 @@ sudo ls "/Scripts/0_Every01Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Ever
 #!/bin/bash
 
 # sudo bash /Scripts/script.sh
-EOT) &>/dev/null
+EOT
+) &>/dev/null
 
 # Add 0_Every01Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every01Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/01 * * * * sh "/Scripts/0_Every01Min.sh"') | sudo crontab -)
@@ -23,7 +24,8 @@ sudo ls "/Scripts/0_Every05Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Ever
 #!/bin/bash
 
 # sudo bash /Scripts/script.sh
-EOT) &>/dev/null
+EOT
+) &>/dev/null
 
 # Add 0_Every05Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every05Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/05 * * * * sh "/Scripts/0_Every05Min.sh"') | sudo crontab -)
@@ -37,7 +39,8 @@ sudo ls "/Scripts/0_Every15Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Ever
 #!/bin/bash
 
 # sudo bash /Scripts/script.sh
-EOT) &>/dev/null
+EOT
+) &>/dev/null
 
 # Add 0_Every15Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every15Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/15 * * * * sh "/Scripts/0_Every15Min.sh"') | sudo crontab -)
@@ -51,7 +54,8 @@ sudo ls "/Scripts/0_Every30Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Ever
 #!/bin/bash
 
 # sudo bash /Scripts/script.sh
-EOT) &>/dev/null
+EOT
+) &>/dev/null
 
 # Add 0_Every30Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every30Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/30 * * * * sh "/Scripts/0_Every30Min.sh"') | sudo crontab -)
@@ -65,7 +69,8 @@ sudo ls "/Scripts/0_Every60Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Ever
 #!/bin/bash
 
 sudo bash /Scripts/Update_DDClient.sh
-EOT) &>/dev/null
+EOT
+) &>/dev/null
 
 # Add 0_Every60Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every60Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/60 * * * * sh "/Scripts/0_Every60Min.sh"') | sudo crontab -)
@@ -78,7 +83,8 @@ sudo crontab -l | grep -q "/Scripts/0_Every60Min.sh" || $((sudo crontab -l 2>/de
 sudo ls "/Scripts/0_Every02AM.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every02AM.sh" &>/dev/null <<EOT
 #!/bin/bash
 
-EOT) &>/dev/null
+EOT
+) &>/dev/null
 
 # Add 0_Every02AM.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every02AM.sh.sh" || $((sudo crontab -l 2>/dev/null; echo '0 2 * * * sh "/Scripts/0_Every02AM.sh"') | sudo crontab -)
@@ -91,7 +97,8 @@ sudo crontab -l | grep -q "/Scripts/0_Every02AM.sh.sh" || $((sudo crontab -l 2>/
 sudo ls "/Scripts/0_Every03AM.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every03AM.sh" &>/dev/null <<EOT
 #!/bin/bash
 
-EOT) &>/dev/null
+EOT
+) &>/dev/null
 
 # Add 0_Every03AM.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every03AM.sh.sh" || $((sudo crontab -l 2>/dev/null; echo '0 3 * * * sh "/Scripts/0_Every03AM.sh"') | sudo crontab -)
