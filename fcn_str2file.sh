@@ -32,21 +32,11 @@ fi
 # Write to File
 if [ "${empty_file}" = false ] && [ "${empty_str}" = false ] && [ "${exists}" = false ]; then
 
-# If file is "sudoers", use "visudo"
-
-if [ "${FILE}" = "/etc/sudoers" ]; then
-
-echo "${STR}" | sudo EDITOR='tee -a' visudo
-
-else
-
 sudo tee -a "${FILE}" > /dev/null <<EOT
 ${STR}
 EOT
 
 fi
-fi
-
 
 # Debugging
 #echo "${FILE}"
