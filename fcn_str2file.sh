@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Usage example:
+# Usage example:
 # fcn_str2file.sh "/etc/hosts" "127.0.0.1 localhost"
 
 FILE="${1}"
@@ -25,7 +25,7 @@ else
 	exists=false
 fi
 
-# Troubleshooting
+# Debugging
 #echo "${FILE}"
 #echo "${STR}"
 #echo "${empty_file}"
