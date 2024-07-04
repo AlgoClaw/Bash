@@ -2,28 +2,51 @@
 
 # Usage example:
 # fcn_str2file.sh "/etc/hosts" "127.0.0.1 localhost"
+# fcn_str2file.sh "/etc/sudoers" "ubuntu	ALL=(ALL:ALL) NOPASSWD:ALL"
 
 FILE="${1}"
 STR="${2}"
 
+# File empty?
 if [ "${FILE}" = "" ]; then
 	empty_file=true
 else
 	empty_file=false
 fi
 
+# String empty?
 if [ "${STR}" = "" ]; then
 	empty_str=true
 else
 	empty_str=false
 fi
 
-str2=$(sudo grep -x "${STR}" ${FILE})
+# See if string already exists as an entire line
+str2=$(sudo grep -x "${STR}" ${FILE} | tail -1)
 if [ "${STR}" = "${str2}" ]; then
 	exists=true
 else
 	exists=false
 fi
+
+# Write to File
+if [ "${empty_file}" = false ] && [ "${empty_str}" = false ] && [ "${exists}" = false ]; then
+
+# If file is "sudoers", use "visudo"
+
+if [ "${FILE}" = "/etc/sudoers" ]; then
+
+echo "${STR}" | sudo EDITOR='tee -a' visudo
+
+else
+
+sudo tee -a "${FILE}" > /dev/null <<EOT
+${STR}
+EOT
+
+fi
+fi
+
 
 # Debugging
 #echo "${FILE}"
@@ -31,11 +54,5 @@ fi
 #echo "${empty_file}"
 #echo "${empty_str}"
 #echo "${exists}"
-
-if [ "${empty_file}" = false ] && [ "${empty_str}" = false ] && [ "${exists}" = false ]; then
-sudo tee -a "${FILE}" > /dev/null <<EOT
-${STR}
-EOT
-sudo apt install -y dos2unix &>/dev/null
-sudo dos2unix "${FILE}" &>/dev/null
-fi
+#echo "${str2}"
+#sudo cat "${FILE}"
