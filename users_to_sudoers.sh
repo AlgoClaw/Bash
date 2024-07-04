@@ -1,5 +1,8 @@
 #!/bin/bash
 
-sudo bash fcn_usr2sudoers.sh root
-sudo bash fcn_usr2sudoers.sh "${SUDO_USER}"
-sudo bash fcn_usr2sudoers.sh "${USER}"
+FILE="/etc/sudoers"
+
+sudo bash fcn_str2file.sh "${FILE}" "localhost	ALL=(ALL:ALL) NOPASSWD:ALL"
+sudo bash fcn_str2file.sh "${FILE}" "root	ALL=(ALL:ALL) NOPASSWD:ALL"
+sudo bash fcn_str2file.sh "${FILE}" "${USER}	ALL=(ALL:ALL) NOPASSWD:ALL"
+sudo bash fcn_str2file.sh "${FILE}" "${HOSTNAME}	ALL=(ALL:ALL) NOPASSWD:ALL"
