@@ -1,8 +1,7 @@
 #!/bin/bash
 
-########
-######## Every 01 Min
-########
+###############
+# Every 01 Min
 
 # Make 0_Every01Min.sh script
 sudo ls "/Scripts/0_Every01Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every01Min.sh" &>/dev/null <<EOT
@@ -15,9 +14,8 @@ EOT
 # Add 0_Every01Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every01Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/01 * * * * sh "/Scripts/0_Every01Min.sh"') | sudo crontab -)
 
-########
-######## Every 05 Min
-########
+###############
+# Every 05 Min
 
 # Make 0_Every05Min.sh script
 sudo ls "/Scripts/0_Every05Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every05Min.sh" &>/dev/null <<EOT
@@ -30,9 +28,8 @@ EOT
 # Add 0_Every05Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every05Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/05 * * * * sh "/Scripts/0_Every05Min.sh"') | sudo crontab -)
 
-########
-######## Every 15 Min
-########
+###############
+# Every 15 Min
 
 # Make 0_Every15Min.sh script
 sudo ls "/Scripts/0_Every15Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every15Min.sh" &>/dev/null <<EOT
@@ -45,9 +42,8 @@ EOT
 # Add 0_Every15Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every15Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/15 * * * * sh "/Scripts/0_Every15Min.sh"') | sudo crontab -)
 
-########
-######## Every 30 Min
-########
+###############
+# Every 30 Min
 
 # Make 0_Every30Min.sh script
 sudo ls "/Scripts/0_Every30Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every30Min.sh" &>/dev/null <<EOT
@@ -60,9 +56,8 @@ EOT
 # Add 0_Every30Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every30Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/30 * * * * sh "/Scripts/0_Every30Min.sh"') | sudo crontab -)
 
-########
-######## Every 60 Min
-########
+###############
+# Every 60 Min
 
 # Make 0_Every60Min.sh script
 sudo ls "/Scripts/0_Every60Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every60Min.sh" &>/dev/null <<EOT
@@ -75,9 +70,8 @@ EOT
 # Add 0_Every60Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every60Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/60 * * * * sh "/Scripts/0_Every60Min.sh"') | sudo crontab -)
 
-########
-######## Every 02 AM
-########
+##############
+# Every 02 AM
 
 # Make 0_Every02AM.sh script
 sudo ls "/Scripts/0_Every02AM.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every02AM.sh" &>/dev/null <<EOT
@@ -89,9 +83,8 @@ EOT
 # Add 0_Every02AM.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every02AM.sh.sh" || $((sudo crontab -l 2>/dev/null; echo '0 2 * * * sh "/Scripts/0_Every02AM.sh"') | sudo crontab -)
 
-########
-######## Every 03 AM
-########
+##############
+# Every 03 AM
 
 # Make 0_Every03AM.sh script
 sudo ls "/Scripts/0_Every03AM.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every03AM.sh" &>/dev/null <<EOT
