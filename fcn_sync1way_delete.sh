@@ -13,4 +13,12 @@ sudo mkdir -p "${DIR2}"
 sudo chmod -R 777 "${DIR1}"
 sudo chmod -R 777 "${DIR2}"
 
-sudo rsync --append-verify --partial --progress --archive --relative --del "${DIR1}./" "${DIR2}"
+sudo rsync \
+--partial \
+--append-verify \
+--relative \
+--progress \
+--archive \
+--delete-after \
+"${DIR1}./" \
+"${DIR2}"
