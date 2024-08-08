@@ -8,6 +8,7 @@ sudo ls "/Scripts/0_Every01Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Ever
 #!/bin/bash
 
 # sudo bash "/Scripts/script.sh"
+
 EOT
 ) &>/dev/null
 
@@ -22,6 +23,7 @@ sudo ls "/Scripts/0_Every05Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Ever
 #!/bin/bash
 
 # sudo bash "/Scripts/script.sh"
+
 EOT
 ) &>/dev/null
 
@@ -37,7 +39,6 @@ sudo ls "/Scripts/0_Every15Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Ever
 
 # sudo bash "/Scripts/script.sh"
 
-sudo bash "/Scripts/FinalizeScripts.sh"
 EOT
 ) &>/dev/null
 
@@ -52,6 +53,7 @@ sudo ls "/Scripts/0_Every30Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Ever
 #!/bin/bash
 
 # sudo bash "/Scripts/script.sh"
+
 EOT
 ) &>/dev/null
 
@@ -67,7 +69,6 @@ sudo ls "/Scripts/0_Every60Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Ever
 
 # sudo bash "/Scripts/script.sh"
 
-sudo bash /Scripts/Update_DDClient.sh
 EOT
 ) &>/dev/null
 
@@ -82,6 +83,7 @@ sudo ls "/Scripts/0_Every02AM.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every
 #!/bin/bash
 
 # sudo bash "/Scripts/script.sh"
+
 EOT
 ) &>/dev/null
 
@@ -96,8 +98,15 @@ sudo ls "/Scripts/0_Every03AM.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every
 #!/bin/bash
 
 # sudo bash "/Scripts/script.sh"
+
 EOT
 ) &>/dev/null
 
 # Add 0_Every03AM.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every03AM.sh" || $((sudo crontab -l 2>/dev/null; echo '0000 3 * * * sh "/Scripts/0_Every03AM.sh"') | sudo crontab -)
+
+#########
+# Add commands to select scripts
+sudo bash "/Scripts/fcn_str2file.sh" "/Scripts/0_Every15Min.sh" 'sudo bash "/Scripts/FinalizeScripts.sh"'
+sudo bash "/Scripts/fcn_str2file.sh" "/Scripts/0_Every60Min.sh" 'sudo bash "/Scripts/Update_DDClient.sh"'
+
