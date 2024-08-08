@@ -7,7 +7,7 @@
 sudo ls "/Scripts/0_Every01Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every01Min.sh" &>/dev/null <<EOT
 #!/bin/bash
 
-# sudo bash /Scripts/script.sh
+# sudo bash "/Scripts/script.sh"
 EOT
 ) &>/dev/null
 
@@ -21,7 +21,7 @@ sudo crontab -l | grep -q "/Scripts/0_Every01Min.sh" || $((sudo crontab -l 2>/de
 sudo ls "/Scripts/0_Every05Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every05Min.sh" &>/dev/null <<EOT
 #!/bin/bash
 
-# sudo bash /Scripts/script.sh
+# sudo bash "/Scripts/script.sh"
 EOT
 ) &>/dev/null
 
@@ -35,7 +35,9 @@ sudo crontab -l | grep -q "/Scripts/0_Every05Min.sh" || $((sudo crontab -l 2>/de
 sudo ls "/Scripts/0_Every15Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every15Min.sh" &>/dev/null <<EOT
 #!/bin/bash
 
-# sudo bash /Scripts/script.sh
+# sudo bash "/Scripts/script.sh"
+
+sudo bash "/Scripts/FinalizeScripts.sh"
 EOT
 ) &>/dev/null
 
@@ -49,7 +51,7 @@ sudo crontab -l | grep -q "/Scripts/0_Every15Min.sh" || $((sudo crontab -l 2>/de
 sudo ls "/Scripts/0_Every30Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every30Min.sh" &>/dev/null <<EOT
 #!/bin/bash
 
-# sudo bash /Scripts/script.sh
+# sudo bash "/Scripts/script.sh"
 EOT
 ) &>/dev/null
 
@@ -62,6 +64,8 @@ sudo crontab -l | grep -q "/Scripts/0_Every30Min.sh" || $((sudo crontab -l 2>/de
 # Make 0_Every60Min.sh script
 sudo ls "/Scripts/0_Every60Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every60Min.sh" &>/dev/null <<EOT
 #!/bin/bash
+
+# sudo bash "/Scripts/script.sh"
 
 sudo bash /Scripts/Update_DDClient.sh
 EOT
@@ -77,6 +81,7 @@ sudo crontab -l | grep -q "/Scripts/0_Every60Min.sh" || $((sudo crontab -l 2>/de
 sudo ls "/Scripts/0_Every02AM.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every02AM.sh" &>/dev/null <<EOT
 #!/bin/bash
 
+# sudo bash "/Scripts/script.sh"
 EOT
 ) &>/dev/null
 
@@ -90,6 +95,7 @@ sudo crontab -l | grep -q "/Scripts/0_Every02AM.sh" || $((sudo crontab -l 2>/dev
 sudo ls "/Scripts/0_Every03AM.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every03AM.sh" &>/dev/null <<EOT
 #!/bin/bash
 
+# sudo bash "/Scripts/script.sh"
 EOT
 ) &>/dev/null
 
