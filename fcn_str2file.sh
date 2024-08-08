@@ -14,6 +14,11 @@ else
 	empty_file=false
 fi
 
+# Create file if it does not exist
+if [ "${empty_file}" = false ]; then
+	sudo ls "${FILE}" &>/dev/null || sudo touch "${FILE}"
+fi
+
 # String empty?
 if [ "${STR}" = "" ]; then
 	empty_str=true
