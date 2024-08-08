@@ -1,112 +1,33 @@
 #!/bin/bash
 
-###############
-# Every 01 Min
+# Create files (will not overwrite) and add '#!/bin/bash'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every01Min.sh' '#!/bin/bash'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every05Min.sh' '#!/bin/bash'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every15Min.sh' '#!/bin/bash'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every30Min.sh' '#!/bin/bash'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every60Min.sh' '#!/bin/bash'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every02AM.sh' '#!/bin/bash'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every03AM.sh' '#!/bin/bash'
 
-# Make 0_Every01Min.sh script
-sudo ls "/Scripts/0_Every01Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every01Min.sh" &>/dev/null <<EOT
-#!/bin/bash
 
-# sudo bash "/Scripts/script.sh"
-
-EOT
-) &>/dev/null
-
-# Add 0_Every01Min.sh script to crontab
+# Schedule Files to Execute in crontab (if entries do not exist already)
 sudo crontab -l | grep -q "/Scripts/0_Every01Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/01 * * * * sh "/Scripts/0_Every01Min.sh"') | sudo crontab -)
-
-###############
-# Every 05 Min
-
-# Make 0_Every05Min.sh script
-sudo ls "/Scripts/0_Every05Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every05Min.sh" &>/dev/null <<EOT
-#!/bin/bash
-
-# sudo bash "/Scripts/script.sh"
-
-EOT
-) &>/dev/null
-
-# Add 0_Every05Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every05Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/05 * * * * sh "/Scripts/0_Every05Min.sh"') | sudo crontab -)
-
-###############
-# Every 15 Min
-
-# Make 0_Every15Min.sh script
-sudo ls "/Scripts/0_Every15Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every15Min.sh" &>/dev/null <<EOT
-#!/bin/bash
-
-# sudo bash "/Scripts/script.sh"
-
-EOT
-) &>/dev/null
-
-# Add 0_Every15Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every15Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/15 * * * * sh "/Scripts/0_Every15Min.sh"') | sudo crontab -)
-
-###############
-# Every 30 Min
-
-# Make 0_Every30Min.sh script
-sudo ls "/Scripts/0_Every30Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every30Min.sh" &>/dev/null <<EOT
-#!/bin/bash
-
-# sudo bash "/Scripts/script.sh"
-
-EOT
-) &>/dev/null
-
-# Add 0_Every30Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every30Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/30 * * * * sh "/Scripts/0_Every30Min.sh"') | sudo crontab -)
-
-###############
-# Every 60 Min
-
-# Make 0_Every60Min.sh script
-sudo ls "/Scripts/0_Every60Min.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every60Min.sh" &>/dev/null <<EOT
-#!/bin/bash
-
-# sudo bash "/Scripts/script.sh"
-
-EOT
-) &>/dev/null
-
-# Add 0_Every60Min.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every60Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/60 * * * * sh "/Scripts/0_Every60Min.sh"') | sudo crontab -)
-
-##############
-# Every 02 AM
-
-# Make 0_Every02AM.sh script
-sudo ls "/Scripts/0_Every02AM.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every02AM.sh" &>/dev/null <<EOT
-#!/bin/bash
-
-# sudo bash "/Scripts/script.sh"
-
-EOT
-) &>/dev/null
-
-# Add 0_Every02AM.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every02AM.sh" || $((sudo crontab -l 2>/dev/null; echo '0000 2 * * * sh "/Scripts/0_Every02AM.sh"') | sudo crontab -)
-
-##############
-# Every 03 AM
-
-# Make 0_Every03AM.sh script
-sudo ls "/Scripts/0_Every03AM.sh" &>/dev/null || $(sudo tee -a "/Scripts/0_Every03AM.sh" &>/dev/null <<EOT
-#!/bin/bash
-
-# sudo bash "/Scripts/script.sh"
-
-EOT
-) &>/dev/null
-
-# Add 0_Every03AM.sh script to crontab
 sudo crontab -l | grep -q "/Scripts/0_Every03AM.sh" || $((sudo crontab -l 2>/dev/null; echo '0000 3 * * * sh "/Scripts/0_Every03AM.sh"') | sudo crontab -)
 
-#########
-# Add commands to select scripts
-sudo bash "/Scripts/fcn_str2file.sh" "/Scripts/0_Every15Min.sh" 'sudo bash "/Scripts/FinalizeScripts.sh"'
-sudo bash "/Scripts/fcn_str2file.sh" "/Scripts/0_Every60Min.sh" 'sudo bash "/Scripts/Update_DDClient.sh"'
+# Add Example Commands to Each Scripts
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every01Min.sh' '# sudo bash "/Scripts/script.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every05Min.sh' '# sudo bash "/Scripts/script.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every15Min.sh' '# sudo bash "/Scripts/script.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every30Min.sh' '# sudo bash "/Scripts/script.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every60Min.sh' '# sudo bash "/Scripts/script.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every02AM.sh' '# sudo bash "/Scripts/script.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every03AM.sh' '# sudo bash "/Scripts/script.sh"'
 
+# Add Commands to Select Scripts
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every15Min.sh' 'sudo bash "/Scripts/FinalizeScripts.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every60Min.sh' 'sudo bash "/Scripts/Update_DDClient.sh"'
