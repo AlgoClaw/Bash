@@ -34,6 +34,7 @@ sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every15Min.sh' 'sudo bash "/Scr
 sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every60Min.sh' 'sudo bash "/Scripts/Update_DDClient.sh"'
 
 # Sub 1 Minute Script Stuff
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every01Min.sh' '	'
 sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every01Min.sh' 'for (( i=1; i<=4; i++ )); do'
 sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every01Min.sh' '	sudo bash "/Scripts/0_Every15Sec.sh"'
 sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every01Min.sh' '	if [ i = 1 ] || [ i = 3 ]; then'
