@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# sudo bash "/Scripts/fcn_SyncThing_RevertLocal.sh" "8384" "abcdefghijk1234567890" "dirID"
+# sudo bash "/Scripts/fcn_syncthing_revertlocal.sh" "8384" "abcdefghijk1234567890" "dirID"
 
 host=https://localhost:"${1}"
 apikey="${2}"
