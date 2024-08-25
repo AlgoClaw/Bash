@@ -6,18 +6,18 @@
 ####
 
 # 1. Directory exist?
-# 	1.1. No - Make directory
+#  1.1. No - Make directory
 # 2. Lock directory
 # 3. Directory already mountpoint?
-# 	3.1. Yes - Do NOT mount, print error, EXIT
+#  3.1. Yes - Do NOT mount, print error, EXIT
 # 4. Directory empty?
-# 	4.1. No -  Do NOT mount, print error, EXIT
+#  4.1. No -  Do NOT mount, print error, EXIT
 # 5. IP reachable?
 #	5.1. No -  Do NOT mount, print error, EXIT
 # 6. (Attempt) mount.
 # 7. Directory already mount point?
-# 	7.1. Yes - Print success, EXIT
-#	7.2. No  - Perror, EXIT
+#  7.1. Yes - Print success, EXIT
+#  7.2. No  - Perror, EXIT
 
 LOCDIR="${1%/}"
 REMIPA="${2}"
