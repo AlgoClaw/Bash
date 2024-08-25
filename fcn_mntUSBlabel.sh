@@ -6,7 +6,7 @@ DIR="${1}"
 LBL="${2}"
 
 # Delete Mountpoint and All Contents (if nothing is mounted)
-mountpoint -q "${DIR}" || sudo rm -r "${DIR}" & wait >/dev/null
+#mountpoint -q "${DIR}" || sudo rm -r "${DIR}" & wait >/dev/null
 
 # Create Mountpoint Directory (if it does not exist already)
 sudo mkdir -p "${DIR}" & wait >/dev/null
