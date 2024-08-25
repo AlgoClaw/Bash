@@ -13,7 +13,7 @@
 # 4. Directory empty?
 #  4.1. No -  Do NOT mount, print error, EXIT
 # 5. IP reachable?
-#	5.1. No -  Do NOT mount, print error, EXIT
+#  5.1. No -  Do NOT mount, print error, EXIT
 # 6. (Attempt) mount.
 # 7. Directory already mount point?
 #  7.1. Yes - Print success, EXIT
