@@ -15,7 +15,7 @@
 # 5. IP reachable?
 #  5.1. No -  Do NOT mount, print error, EXIT
 # 6. (Attempt) mount.
-# 7. Directory already mount point?
+# 7. Directory already mountpoint?
 #  7.1. Yes - Print success, EXIT
 #  7.2. No  - Perror, EXIT
 
