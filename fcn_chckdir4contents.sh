@@ -6,4 +6,8 @@
 
 DIR="${1%/}"
 
-[[ $(sudo ls -A "${DIR}") ]] && echo "1" || echo "0"
+if [ "$(ls -A ${DIR})" == "" ]; then
+	echo "0" # empty
+else
+	echo "1" # NOT empty
+fi
