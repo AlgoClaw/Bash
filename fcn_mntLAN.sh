@@ -17,7 +17,7 @@
 # 6. (Attempt) mount.
 # 7. Directory already mountpoint?
 #  7.1. Yes - Print success, EXIT
-#  7.2. No  - Perror, EXIT
+#  7.2. No  - Print error, EXIT
 
 LOCDIR="${1%/}"
 REMIPA="${2}"
