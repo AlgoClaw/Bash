@@ -11,3 +11,5 @@ sudo bash make_every_xx.sh
 sudo bash users_to_sudoers.sh
 
 sudo bash users_to_hosts.sh
+
+sudo bash disable_login_spam.sh
