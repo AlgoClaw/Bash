@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo rm /etc/apt/apt.conf.d/20apt-esm-hook.conf & wait
+sudo rm -r /etc/apt/apt.conf.d/*esm* >/dev/null & wait
 sudo dpkg --configure -a & wait
 sudo DEBIAN_FRONTEND=noninteractive apt install -y ubuntu-advantage-tools & wait
 sudo DEBIAN_FRONTEND=noninteractive apt update -y & wait
