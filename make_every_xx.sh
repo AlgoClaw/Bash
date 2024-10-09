@@ -20,7 +20,7 @@ sudo crontab -l | grep -q "/Scripts/0_Every60Min.sh" || $((sudo crontab -l 2>/de
 sudo crontab -l | grep -q "/Scripts/0_Every02AM.sh" || $((sudo crontab -l 2>/dev/null; echo '0000 2 * * * sh "/Scripts/0_Every02AM.sh"') | sudo crontab -)
 sudo crontab -l | grep -q "/Scripts/0_Every03AM.sh" || $((sudo crontab -l 2>/dev/null; echo '0000 3 * * * sh "/Scripts/0_Every03AM.sh"') | sudo crontab -)
 
-# Add Example Commands to Each Script (1 minute and above)
+# Add Example Commands to Each Script
 sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every01Min.sh' '# sudo bash "/Scripts/script.sh"'
 sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every02AM.sh' '# sudo bash "/Scripts/script.sh"'
 sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every03AM.sh' '# sudo bash "/Scripts/script.sh"'
