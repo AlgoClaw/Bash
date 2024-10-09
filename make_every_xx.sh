@@ -22,12 +22,14 @@ sudo crontab -l | grep -q "/Scripts/0_Every03AM.sh" || $((sudo crontab -l 2>/dev
 
 # Add Example Commands to Each Script (1 minute and above)
 sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every01Min.sh' '# sudo bash "/Scripts/script.sh"'
-sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every05Min.sh' '# sudo bash "/Scripts/script.sh"'
-sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every15Min.sh' '# sudo bash "/Scripts/script.sh"'
-sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every30Min.sh' '# sudo bash "/Scripts/script.sh"'
-sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every60Min.sh' '# sudo bash "/Scripts/script.sh"'
 sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every02AM.sh' '# sudo bash "/Scripts/script.sh"'
 sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every03AM.sh' '# sudo bash "/Scripts/script.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every05Min.sh' '# sudo bash "/Scripts/script.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every15Min.sh' '# sudo bash "/Scripts/script.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every15Sec.sh' '# sudo bash "/Scripts/script.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every30Min.sh' '# sudo bash "/Scripts/script.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every30Sec.sh' '# sudo bash "/Scripts/script.sh"'
+sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every60Min.sh' '# sudo bash "/Scripts/script.sh"'
 
 # Add Commands to Select Scripts
 sudo bash '/Scripts/fcn_str2file.sh' '/Scripts/0_Every15Min.sh' 'sudo bash "/Scripts/FinalizeScripts.sh"'
