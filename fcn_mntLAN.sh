@@ -27,7 +27,8 @@ PASSWD="${5:-a}"
 PORTNO="${6:-445}"
 
 # Install Dependencies
-sudo apt-get install -y net-tools cifs-utils >/dev/null && \
+sudo bash fcn_install.sh "net-tools" & wait
+sudo bash fcn_install.sh "cifs-utils" & wait
 
 # Script Direcotry
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ) >/dev/null
