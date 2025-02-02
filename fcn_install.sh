@@ -12,8 +12,8 @@ INSTALL_STATE=$(dpkg -l | grep "${PKG}" | grep ii >/dev/null && echo "1" || echo
 # 1 = installed
 
 if [[ "${INSTALL_STATE}" == 1 ]]; then
-  echo '"'"${PKG}"'"'" already installed"
+  #echo '"'"${PKG}"'"'" already installed"
 else
   echo '"'"${PKG}"'"'" not installed, installing now"
-  sudo apt install -y ${PKG}
+  sudo DEBIAN_FRONTEND=noninteractive apt install -y ${PKG}
 fi
