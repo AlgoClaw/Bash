@@ -2,7 +2,7 @@
 
 # sudo bash fcn_sync1way_nodelete_update.sh "/path/to/source" "/path/to/destination"
 
-sudo apt install -y rsync
+sudo bash fcn_install.sh "rsync"
 
 DIR1=${1%/}/
 DIR2=${2%/}/
