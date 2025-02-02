@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install Dependencies
-sudo DEBIAN_FRONTEND=noninteractive apt install -y dos2unix
+sudo bash fcn_install.sh "dos2unix"
 sudo pacman -Sy --noconfirm dos2unix --overwrite '*'
 
 # Script Direcotry
