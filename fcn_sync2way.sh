@@ -6,7 +6,7 @@ DIR1=${1%/}/
 DIR2=${2%/}/
 
 # Install dependencies
-sudo apt install -y rsync
+sudo bash fcn_install.sh "rsync"
 
 # DIR1 to DIR2
 sudo rsync --relative --recursive --partial --progress --append-verify "${DIR1}./" "${DIR2}" & wait
