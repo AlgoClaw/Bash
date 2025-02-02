@@ -4,7 +4,7 @@
 sudo apt remove -y --purge vsftpd
 
 # Install FTP server
-sudo apt install -y vsftpd
+sudo bash fcn_install.sh "vsftpd"
 
 # Change FTP root directory to system’s root directory ("/")
 sudo usermod -d "/" ftp
