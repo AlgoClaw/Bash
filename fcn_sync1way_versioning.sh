@@ -14,7 +14,7 @@ updates_file="onewaysyncupdatefile.txt"
 sudo rm -f "${updates_file}"
 
 #### install dependencies
-sudo DEBIAN_FRONTEND=noninteractive apt install -y rsync
+sudo bash fcn_install.sh "rsync"
 sudo pacman -Sy --noconfirm rsync
 
 #### generate list of files to update (files on destination that would be modified/overwritten)
