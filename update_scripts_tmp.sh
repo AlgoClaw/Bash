@@ -2,7 +2,7 @@
 DEFSCRDIR="/usr/local/bin"
 #
 #### Define Custom Script Directory Location
-SCRIPTDIR="/Scripts"
+SCRIPTDIR="/scripts"
 #
 #### Create Directories, if they do not exist
 sudo mkdir -p "${SCRIPTDIR}"

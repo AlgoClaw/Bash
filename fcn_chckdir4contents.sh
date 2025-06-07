@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sudo bash "/Scripts/fcn_chckdir4contents.sh" "/path/to/dir"
+# sudo bash "/scripts/fcn_chckdir4contents.sh" "/path/to/dir"
 # 0 = empty
 # 1 = NOT empty
 

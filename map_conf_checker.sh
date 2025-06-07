@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sudo bash /Scripts/map_conf_checker.sh
+# sudo bash /scripts/map_conf_checker.sh
 
 file="/Docker/SWAG/nginx/map.conf" 
 

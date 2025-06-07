@@ -2,7 +2,7 @@
 DEFSCRDIR="/usr/local/bin"
 #
 #### Define Custom Script Directory Locations
-SCRIPTDIR="/Scripts"
+SCRIPTDIR="/scripts"
 GITHUBDIR="${SCRIPTDIR}/github"
 CUSTOMDIR="${SCRIPTDIR}/custom"
 EXSTNGDIR="${SCRIPTDIR}/existing"

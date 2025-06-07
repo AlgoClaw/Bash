@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sudo bash "/Scripts/fcn_chckmnt.sh" "/path/to/local/mnt"
+# sudo bash "/scripts/fcn_chckmnt.sh" "/path/to/local/mnt"
 # 0 = not mounted
 # 1 = mounted
 

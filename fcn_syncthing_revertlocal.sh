@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# sudo bash "/Scripts/fcn_SyncThing_RevertLocal.sh" "abcdefghijk1234567890" "dirID"
-# sudo bash "/Scripts/fcn_SyncThing_RevertLocal.sh" "abcdefghijk1234567890" "dirID" "8384"
+# sudo bash "/scripts/fcn_SyncThing_RevertLocal.sh" "abcdefghijk1234567890" "dirID"
+# sudo bash "/scripts/fcn_SyncThing_RevertLocal.sh" "abcdefghijk1234567890" "dirID" "8384"
 
 apikey="${1}"
 folder="${2}"
