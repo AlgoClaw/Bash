@@ -2,7 +2,7 @@
 
 # sudo bash /scripts/map_conf_checker.sh
 
-file="/Docker/SWAG/nginx/map.conf" 
+file="/docker/SWAG/nginx/map.conf" 
 
 ###
 
