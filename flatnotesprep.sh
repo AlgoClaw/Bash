@@ -6,7 +6,10 @@
 # sudo bash /scripts/flatnotesprep.sh ${DIR} ${TITLE}
 
 DEBUG=0
+BEAUTIFY=0
 TESTCONTAINER=0
+
+####
 
 DIR="${1}"
 TITLE="${2}"
@@ -168,26 +171,30 @@ find "${DIR}app-client-dist/" -type f -name "Note*.css" | xargs sed -i "s|${FIND
 ###############
 # Beautify
 
-sudo apt install -y jsbeautifier
-sudo apt install -y css-beautify
+if [ "${BEAUTIFY}" == "1" ]; then
 
-find "${DIR}app-client-dist/" -type f -name "*.js" -exec js-beautify -r {} \;
-find "${DIR}app-client-dist/" -type f -name "*.css" -exec css-beautify -r {} \;
+    sudo apt install -y jsbeautifier
+    sudo apt install -y css-beautify
+    
+    find "${DIR}app-client-dist/" -type f -name "*.js" -exec js-beautify -r {} \;
+    find "${DIR}app-client-dist/" -type f -name "*.css" -exec css-beautify -r {} \;
+    
+fi
 
 #################################################
 ###### TEST OUTPUT (IF TESTCONTAINER = 1) #######
 #################################################
 
-if [ "${TESTCONTAINER}" != "1" ]; then
-    exit
-fi
+if [ "${TESTCONTAINER}" == "1" ]; then
 
-sudo docker run -dit \
---name ${NAME} \
---restart unless-stopped \
--e FLATNOTES_PATH=/notes \
--v ${DIR}notes/:/notes/ \
--v ${DIR}app-client-dist/:/app/client/dist/ \
--e FLATNOTES_AUTH_TYPE=none \
--p 12345:8080 \
-${IMAG}
+    sudo docker run -dit \
+    --name ${NAME} \
+    --restart unless-stopped \
+    -e FLATNOTES_PATH=/notes \
+    -v ${DIR}notes/:/notes/ \
+    -v ${DIR}app-client-dist/:/app/client/dist/ \
+    -e FLATNOTES_AUTH_TYPE=none \
+    -p 12345:8080 \
+    ${IMAG}
+
+fi
