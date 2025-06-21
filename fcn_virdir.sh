@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Example
-# sudo bash /scripts/fcn_virdir.sh 
+#### Example:
+# SRC="/path/to/existing/dir"
+# DST="/path/to/empty/dir"
+# sudo bash /scripts/fcn_virdir.sh ${SRC} ${DST}
 
 SRC="${1}"
 DST="${2}"
@@ -13,6 +15,9 @@ fi
 if [ "${DST}" == "" ]; then
     exit
 fi
+
+SRC="${SRC%/}/"
+DST="${DST%/}/"
 
 # Script Direcotry
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ) >/dev/null 2>&1
