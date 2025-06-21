@@ -15,6 +15,10 @@ sudo systemctl start docker & wait
 
 # LAN Mounts
 sudo bash /scripts/mnt_LAN.sh & wait
+
+# Virtual Mounts
+sudo bash /scripts/mnt_virtual.sh & wait
+
 EOT
 ) &>/dev/null
 
