@@ -3,7 +3,7 @@
 #### Example:
 # SRC="/path/to/existing/dir"
 # DST="/path/to/empty/dir"
-# sudo bash /scripts/fcn_virdir.sh ${SRC} ${DST}
+# sudo bash /scripts/fcn_virdir.sh "${SRC}" "${DST}"
 
 SRC="${1}"
 DST="${2}"
