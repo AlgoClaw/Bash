@@ -33,4 +33,4 @@ if [[ $(sudo bash /scripts/fcn_chckdir4contents.sh "${DST}") == 1 ]]; then
 fi
 
 # "Merge" SRC to DST
-sudo mergerfs -o nonempty,allow_other,use_ino,category.create=ff "${SRC}" "${DST}"
+sudo mergerfs -o allow_other,use_ino,category.create=ff "${SRC}" "${DST}"
