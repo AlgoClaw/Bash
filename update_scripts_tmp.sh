@@ -16,20 +16,6 @@ sudo rm -f /"${SCRIPTDIR}"_tmp/README.md
 sudo cp -RTf /"${SCRIPTDIR}"_tmp "${SCRIPTDIR}"
 sudo rm -r /"${SCRIPTDIR}"_tmp
 #
-
-# Add $SCRIPTDIR to $PATH
-case ":$PATH:" in
-  *":$SCRIPTDIR:"*)
-    # The path is already in the PATH. Do nothing.
-    ;;
-  *)
-    # The path is not in the PATH. Add it.
-    export PATH="$PATH:$SCRIPTDIR"
-    ;;
-esac
-
-exit
-
 #### Unmount Anything Mapped to Custom and Default Script Directories
 while [[ $(findmnt "${SCRIPTDIR}") != "" ]]; do sudo umount --all-targets -l "${SCRIPTDIR}"; done
 #
