@@ -11,6 +11,17 @@ sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every60Min.sh' '#!/bin/bash'
 sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every02AM.sh' '#!/bin/bash'
 sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every03AM.sh' '#!/bin/bash'
 
+# Add Instance Lock to Each File
+sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every15Sec.sh'
+sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every30Sec.sh'
+sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every01Min.sh'
+sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every05Min.sh'
+sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every15Min.sh'
+sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every30Min.sh'
+sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every60Min.sh'
+sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every02AM.sh'
+sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every03AM.sh'
+
 # Schedule Files to Execute in crontab (if entries do not exist already)
 sudo crontab -l | grep -q "/scripts/0_Every01Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/01 * * * * sh "/scripts/0_Every01Min.sh"') | sudo crontab -)
 sudo crontab -l | grep -q "/scripts/0_Every05Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/05 * * * * sh "/scripts/0_Every05Min.sh"') | sudo crontab -)
@@ -33,7 +44,6 @@ sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every60Min.sh' '# sudo bash "/s
 
 # Add Commands to Select Scripts
 sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every15Min.sh' 'sudo bash "/scripts/FinalizeScripts.sh"'
-sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every60Min.sh' 'sudo bash "/scripts/Update_DDClient.sh"'
 
 # Sub 1 Minute Script Stuff
 sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' 'sudo bash "/scripts/0_Every15Sec.sh"'
