@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This File is NON-destructive.
+# If modified versions of 0_EveryXX files arleady exist, this script will NOT overwrite those modifications.
+
 # Create files (will not overwrite) and add '#!/bin/bash'
 sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every15Sec.sh' '#!/bin/bash'
 sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every30Sec.sh' '#!/bin/bash'
@@ -44,15 +47,26 @@ sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every60Min.sh' '# sudo bash "/s
 
 # Add Commands to Select Scripts
 sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every15Min.sh' 'sudo bash "/scripts/FinalizeScripts.sh"'
+sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every60Min.sh' 'sudo bash "/scripts/Update_DDClient.sh"'
 
 # Sub 1 Minute Script Stuff
-sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' 'sudo bash "/scripts/0_Every15Sec.sh"'
-sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' 'sudo bash "/scripts/0_Every30Sec.sh"'
-sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' 'sleep 15'
-sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' 'sudo bash "/scripts/0_Every15Sec.sh"'
-sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' 'sleep 15'
-sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' 'sudo bash "/scripts/0_Every15Sec.sh"'
-sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' 'sudo bash "/scripts/0_Every30Sec.sh"'
-sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' 'sleep 15'
-sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' 'sudo bash "/scripts/0_Every15Sec.sh"'
-sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' 'sleep 15'
+TARGET_FILE="/scripts/0_Every01Min.sh"
+
+read -r -d '' COMMAND_BLOCK <<'EOF'
+sudo bash "/scripts/0_Every15Sec.sh"
+sudo bash "/scripts/0_Every30Sec.sh"
+sleep 15
+sudo bash "/scripts/0_Every15Sec.sh"
+sleep 15
+sudo bash "/scripts/0_Every15Sec.sh"
+sudo bash "/scripts/0_Every30Sec.sh"
+sleep 15
+sudo bash "/scripts/0_Every15Sec.sh"
+EOF
+
+FILE_CONTENT=$(<"$TARGET_FILE")
+
+if [[ "$FILE_CONTENT" != *"$COMMAND_BLOCK"* ]]; then
+  echo "" >> "$TARGET_FILE"
+  echo "$COMMAND_BLOCK" >> "$TARGET_FILE"
+fi
