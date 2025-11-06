@@ -12,15 +12,12 @@ sudo bash fcn_install.sh "perl"
 # Script Direcotry
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ) >/dev/null
 
-# --- Set Permissions ---
-
 # 1. Convert line endings (run only on files)
 find "$SCRIPT_DIR" -type f -exec sudo dos2unix {} +
 
-# 2. Replace non-standard whitespace (run only on files)
-# This finds any whitespace character that is NOT a space, tab,
-# newline, or carriage return and replaces it with a standard space.
-find "$SCRIPT_DIR" -type f -exec sudo perl -i -CS -pe 's/[^\x20\x0A\x0D\x09\S]/ /g' {} +
+# 2. Replace Non-Breaking Spaces (NBSP) with a standard space
+# This safely targets *only* the \x{00A0} character.
+find "$SCRIPT_DIR" -type f -exec sudo perl -i -CS -pe 's/\x{00A0}/ /g' {} +
 
 # 3. Make executable (recursively on all files and directories)
 sudo chmod -R +x "$SCRIPT_DIR"
