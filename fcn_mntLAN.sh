@@ -3,7 +3,7 @@
 # sudo bash "/path/to/fcn_mntLAN.sh" "/path/to/local/mntpnt" "192.168.xx.xx" "/path/to/remote/dir" "username" "password" "port"
 # sudo bash "/path/to/fcn_mntLAN.sh" "/mnt/LAN/ABC" "192.168.56.78" "/root"
 
-####
+#####
 
 # 1. Directory exist?
 #  1.1. No - Make directory
