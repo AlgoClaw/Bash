@@ -58,7 +58,11 @@ ping -c 1 -n "${REMIPA}" >/dev/null || \
 { echo "Mount FAILED. IP unreachable. Exiting. (//${REMIPA}${REMDIR} NOT mounted at ${LOCDIR})"; exit; }
 
 # 6. (Attempt) Mounting {REMIPA}{REMDIR} to LOCDIR
-sudo mount -t cifs -o port="${PORTNO}",username="${USNAME}",password="${PASSWD}",uid=$(id -u user),gid=$(id -g user) "//${REMIPA}${REMDIR}" "${LOCDIR}" >/dev/null
+# Determine the target user for ownership
+# If SUDO_USER is set (sudo used), use it. Otherwise fallback to current user (e.g., root).
+TARGET_USER="${SUDO_USER:-$(whoami)}"
+# Uses TARGET_USER to assign ownership dynamically
+sudo mount -t cifs -o port="${PORTNO}",username="${USNAME}",password="${PASSWD}",uid=$(id -u "${TARGET_USER}"),gid=$(id -g "${TARGET_USER}") "//${REMIPA}${REMDIR}" "${LOCDIR}" >/dev/null
 
 # 7. Check if LOCDIR is already a mountpoint. If so, print success. If not, print error.
 if [[ $(sudo bash $SCRIPT_DIR/fcn_chckmnt.sh "${LOCDIR}") == 1 ]]; then
