@@ -5,19 +5,19 @@ sudo ls "/scripts/boot.sh" &>/dev/null || $(sudo tee -a "/scripts/boot.sh" &>/de
 #!/bin/bash
 
 # USB Mounts
-sudo bash /scripts/mnt_USB.sh & wait
+sudo bash /scripts/mnt_USB.sh
 
 # Samba
-sudo bash /scripts/smb.sh & wait
+sudo bash /scripts/smb.sh
 
 # Start Docker
-sudo systemctl start docker & wait
+sudo systemctl start docker
 
 # LAN Mounts
-sudo bash /scripts/mnt_LAN.sh & wait
+sudo bash /scripts/mnt_LAN.sh
 
 # Virtual Mounts
-sudo bash /scripts/mnt_virtual.sh & wait
+sudo bash /scripts/mnt_virtual.sh
 
 EOT
 ) &>/dev/null
