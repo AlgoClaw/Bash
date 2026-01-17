@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Make boot.sh script
-sudo ls "/scripts/boot.sh" &>/dev/null || $(sudo tee -a "/scripts/boot.sh" &>/dev/null <<EOT
+# Make boot.sh script (Non-destructive)
+if [ ! -f "/scripts/boot.sh" ]; then
+    sudo tee "/scripts/boot.sh" >/dev/null <<EOT
 #!/bin/bash
 
 # USB Mounts
@@ -20,7 +21,9 @@ sudo bash /scripts/mnt_LAN.sh
 sudo bash /scripts/mnt_virtual.sh
 
 EOT
-) &>/dev/null
+    # Make executable
+    sudo chmod +x "/scripts/boot.sh"
+fi
 
 # Add boot.sh script to crontab
-sudo crontab -l | grep -q "/scripts/boot.sh" || $((sudo crontab -l 2>/dev/null; echo '@reboot sh "/scripts/boot.sh"') | sudo crontab -)
+sudo crontab -l | grep -q "/scripts/boot.sh" || ( (sudo crontab -l 2>/dev/null; echo '@reboot /bin/bash "/scripts/boot.sh"') | sudo crontab - )
