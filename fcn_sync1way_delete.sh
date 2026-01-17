@@ -7,7 +7,12 @@ sudo bash fcn_install.sh "rsync"
 DIR1=${1%/}/
 DIR2=${2%/}/
 
-sudo mkdir -p "${DIR1}"
+# EXPLICIT CHECK: Exit immediately if the source directory does not exist.
+if [ ! -d "${DIR1}" ]; then
+    echo "Error: Source directory '${DIR1}' does not exist. Aborting to protect backup."
+    exit 1
+fi
+
 sudo mkdir -p "${DIR2}"
 
 sudo chmod -R 777 "${DIR1}"
