@@ -68,9 +68,15 @@ sleep 15
 sudo bash "/scripts/0_Every15Sec.sh"
 EOF
 
-FILE_CONTENT=$(<"$TARGET_FILE")
+# 1. Read file content using sudo (to bypass permission limits)
+FILE_CONTENT=$(sudo cat "$TARGET_FILE")
 
+# 2. Compare content using Bash pattern matching
 if [[ "$FILE_CONTENT" != *"$COMMAND_BLOCK"* ]]; then
-  echo "" >> "$TARGET_FILE"
-  echo "$COMMAND_BLOCK" >> "$TARGET_FILE"
+  # 3. Append using sudo tee (to bypass permission limits)
+  echo "" | sudo tee -a "$TARGET_FILE" > /dev/null
+  echo "$COMMAND_BLOCK" | sudo tee -a "$TARGET_FILE" > /dev/null
+  echo "Appended sub-minute commands to ${TARGET_FILE}"
+else
+  echo "Sub-minute commands already present in ${TARGET_FILE}. Skipping."
 fi
