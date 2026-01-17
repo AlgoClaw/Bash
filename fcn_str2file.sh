@@ -1,53 +1,32 @@
 #!/bin/bash
 
 # Usage example:
-# fcn_str2file.sh "/etc/hosts" "127.0.0.1 localhost"
-# fcn_str2file.sh "/etc/sudoers" "ubuntu	ALL=(ALL:ALL) NOPASSWD:ALL"
+# fcn_str2file.sh "/path/to/file" "string to append"
 
 FILE="${1}"
 STR="${2}"
 
-# File empty?
-if [ "${FILE}" = "" ]; then
-	empty_file=true
+# 1. Validation: Exit if variables are empty
+if [ -z "${FILE}" ] || [ -z "${STR}" ]; then
+    echo "Error: Missing file or string arguments."
+    exit 1
+fi
+
+# 2. Ensure File Exists
+# using 'test -f' is cleaner than 'ls', but we need sudo for root-owned dirs
+if ! sudo test -f "${FILE}"; then
+    sudo touch "${FILE}"
+fi
+
+# 3. Idempotency Check
+# grep -F: Treat string as literal (ignoring regex special chars like . * [ ] )
+# grep -x: Match the entire line exactly
+# grep -q: Quiet mode (don't output the line, just return true/false)
+if sudo grep -Fxq "${STR}" "${FILE}"; then
+    # String already exists; do nothing
+    :
 else
-	empty_file=false
+    # String is missing; append it
+    echo "${STR}" | sudo tee -a "${FILE}" > /dev/null
+    # echo "Added entry to ${FILE}" # Optional feedback
 fi
-
-# Create file if it does not exist
-if [ "${empty_file}" = false ]; then
-	sudo ls "${FILE}" &>/dev/null || sudo touch "${FILE}"
-fi
-
-# String empty?
-if [ "${STR}" = "" ]; then
-	empty_str=true
-else
-	empty_str=false
-fi
-
-# String already exists as a line?
-str2=$(sudo grep -x "${STR}" ${FILE} | tail -1)
-if [ "${STR}" = "${str2}" ]; then
-	exists=true
-else
-	exists=false
-fi
-
-# Write to File
-if [ "${empty_file}" = false ] && [ "${empty_str}" = false ] && [ "${exists}" = false ]; then
-
-sudo tee -a "${FILE}" > /dev/null <<EOT
-${STR}
-EOT
-
-fi
-
-# Debugging
-#echo "${FILE}"
-#echo "${STR}"
-#echo "${empty_file}"
-#echo "${empty_str}"
-#echo "${exists}"
-#echo "${str2}"
-#sudo cat "${FILE}"
