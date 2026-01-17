@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This File is NON-destructive.
-# If modified versions of 0_EveryXX files arleady exist, this script will NOT overwrite those modifications.
+# If modified versions of 0_EveryXX files already exist, this script will NOT overwrite those modifications.
 
 # Create files (will not overwrite) and add '#!/bin/bash'
 sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every15Sec.sh' '#!/bin/bash'
@@ -28,14 +28,14 @@ sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every02AM.sh'
 sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every03AM.sh'
 
 # Schedule Files to Execute in crontab (if entries do not exist already)
-sudo crontab -l | grep -q "/scripts/0_Every01Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/1 * * * * /bin/bash "/scripts/0_Every01Min.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every05Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/5 * * * * /bin/bash "/scripts/0_Every05Min.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every15Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/15 * * * * /bin/bash "/scripts/0_Every15Min.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every30Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/30 * * * * /bin/bash "/scripts/0_Every30Min.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every60Min.sh" || $((sudo crontab -l 2>/dev/null; echo '0 * * * * /bin/bash "/scripts/0_Every60Min.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every12Hrs.sh" || $((sudo crontab -l 2>/dev/null; echo '0 */12 * * * /bin/bash "/scripts/0_Every12Hrs.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every02AM.sh" || $((sudo crontab -l 2>/dev/null; echo '0 2 * * * /bin/bash "/scripts/0_Every02AM.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every03AM.sh" || $((sudo crontab -l 2>/dev/null; echo '0 3 * * * /bin/bash "/scripts/0_Every03AM.sh"') | sudo crontab -)
+sudo crontab -l | grep -q "/scripts/0_Every01Min.sh" || ( (sudo crontab -l 2>/dev/null; echo '*/1 * * * * /bin/bash "/scripts/0_Every01Min.sh"') | sudo crontab - )
+sudo crontab -l | grep -q "/scripts/0_Every05Min.sh" || ( (sudo crontab -l 2>/dev/null; echo '*/5 * * * * /bin/bash "/scripts/0_Every05Min.sh"') | sudo crontab - )
+sudo crontab -l | grep -q "/scripts/0_Every15Min.sh" || ( (sudo crontab -l 2>/dev/null; echo '*/15 * * * * /bin/bash "/scripts/0_Every15Min.sh"') | sudo crontab - )
+sudo crontab -l | grep -q "/scripts/0_Every30Min.sh" || ( (sudo crontab -l 2>/dev/null; echo '*/30 * * * * /bin/bash "/scripts/0_Every30Min.sh"') | sudo crontab - )
+sudo crontab -l | grep -q "/scripts/0_Every60Min.sh" || ( (sudo crontab -l 2>/dev/null; echo '0 * * * * /bin/bash "/scripts/0_Every60Min.sh"') | sudo crontab - )
+sudo crontab -l | grep -q "/scripts/0_Every12Hrs.sh" || ( (sudo crontab -l 2>/dev/null; echo '0 */12 * * * /bin/bash "/scripts/0_Every12Hrs.sh"') | sudo crontab - )
+sudo crontab -l | grep -q "/scripts/0_Every02AM.sh" || ( (sudo crontab -l 2>/dev/null; echo '0 2 * * * /bin/bash "/scripts/0_Every02AM.sh"') | sudo crontab - )
+sudo crontab -l | grep -q "/scripts/0_Every03AM.sh" || ( (sudo crontab -l 2>/dev/null; echo '0 3 * * * /bin/bash "/scripts/0_Every03AM.sh"') | sudo crontab - )
 
 # Add Example Commands to Each Script
 sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' '# sudo bash "/scripts/script.sh"'
@@ -68,12 +68,12 @@ sleep 15
 sudo bash "/scripts/0_Every15Sec.sh"
 EOF
 
-# 1. Read file content using sudo (to bypass permission limits)
+# Read file content using sudo (to bypass permission limits)
 FILE_CONTENT=$(sudo cat "$TARGET_FILE")
 
-# 2. Compare content using Bash pattern matching
+# Compare content using Bash pattern matching
 if [[ "$FILE_CONTENT" != *"$COMMAND_BLOCK"* ]]; then
-  # 3. Append using sudo tee (to bypass permission limits)
+  # Append using sudo tee (to bypass permission limits)
   echo "" | sudo tee -a "$TARGET_FILE" > /dev/null
   echo "$COMMAND_BLOCK" | sudo tee -a "$TARGET_FILE" > /dev/null
   echo "Appended sub-minute commands to ${TARGET_FILE}"
