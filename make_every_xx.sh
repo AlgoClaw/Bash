@@ -28,14 +28,14 @@ sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every02AM.sh'
 sudo bash '/scripts/fcn_add_instance_lock.sh' '/scripts/0_Every03AM.sh'
 
 # Schedule Files to Execute in crontab (if entries do not exist already)
-sudo crontab -l | grep -q "/scripts/0_Every01Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/1 * * * * sh "/scripts/0_Every01Min.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every05Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/5 * * * * sh "/scripts/0_Every05Min.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every15Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/15 * * * * sh "/scripts/0_Every15Min.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every30Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/30 * * * * sh "/scripts/0_Every30Min.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every60Min.sh" || $((sudo crontab -l 2>/dev/null; echo '0 * * * * sh "/scripts/0_Every60Min.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every60Min.sh" || $((sudo crontab -l 2>/dev/null; echo '0 */12 * * * sh "/scripts/0_Every12Hrs.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every02AM.sh" || $((sudo crontab -l 2>/dev/null; echo '0 2 * * * sh "/scripts/0_Every02AM.sh"') | sudo crontab -)
-sudo crontab -l | grep -q "/scripts/0_Every03AM.sh" || $((sudo crontab -l 2>/dev/null; echo '0 3 * * * sh "/scripts/0_Every03AM.sh"') | sudo crontab -)
+sudo crontab -l | grep -q "/scripts/0_Every01Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/1 * * * * /bin/bash "/scripts/0_Every01Min.sh"') | sudo crontab -)
+sudo crontab -l | grep -q "/scripts/0_Every05Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/5 * * * * /bin/bash "/scripts/0_Every05Min.sh"') | sudo crontab -)
+sudo crontab -l | grep -q "/scripts/0_Every15Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/15 * * * * /bin/bash "/scripts/0_Every15Min.sh"') | sudo crontab -)
+sudo crontab -l | grep -q "/scripts/0_Every30Min.sh" || $((sudo crontab -l 2>/dev/null; echo '*/30 * * * * /bin/bash "/scripts/0_Every30Min.sh"') | sudo crontab -)
+sudo crontab -l | grep -q "/scripts/0_Every60Min.sh" || $((sudo crontab -l 2>/dev/null; echo '0 * * * * /bin/bash "/scripts/0_Every60Min.sh"') | sudo crontab -)
+sudo crontab -l | grep -q "/scripts/0_Every12Hrs.sh" || $((sudo crontab -l 2>/dev/null; echo '0 */12 * * * /bin/bash "/scripts/0_Every12Hrs.sh"') | sudo crontab -)
+sudo crontab -l | grep -q "/scripts/0_Every02AM.sh" || $((sudo crontab -l 2>/dev/null; echo '0 2 * * * /bin/bash "/scripts/0_Every02AM.sh"') | sudo crontab -)
+sudo crontab -l | grep -q "/scripts/0_Every03AM.sh" || $((sudo crontab -l 2>/dev/null; echo '0 3 * * * /bin/bash "/scripts/0_Every03AM.sh"') | sudo crontab -)
 
 # Add Example Commands to Each Script
 sudo bash '/scripts/fcn_str2file.sh' '/scripts/0_Every01Min.sh' '# sudo bash "/scripts/script.sh"'
