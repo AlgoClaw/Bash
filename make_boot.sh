@@ -8,9 +8,6 @@ if [ ! -f "/scripts/boot.sh" ]; then
 # USB Mounts
 sudo bash /scripts/mnt_USB.sh
 
-# Samba
-sudo bash /scripts/smb.sh
-
 # Start Docker
 sudo systemctl start docker
 
