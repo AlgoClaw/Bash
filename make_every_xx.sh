@@ -76,7 +76,4 @@ if [[ "$FILE_CONTENT" != *"$COMMAND_BLOCK"* ]]; then
   # Append using sudo tee (to bypass permission limits)
   echo "" | sudo tee -a "$TARGET_FILE" > /dev/null
   echo "$COMMAND_BLOCK" | sudo tee -a "$TARGET_FILE" > /dev/null
-  echo "Appended sub-minute commands to ${TARGET_FILE}"
-else
-  echo "Sub-minute commands already present in ${TARGET_FILE}. Skipping."
 fi
