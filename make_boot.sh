@@ -5,7 +5,7 @@ if [ ! -f "/scripts/boot.sh" ]; then
     sudo tee "/scripts/boot.sh" >/dev/null <<EOT
 #!/bin/bash
 
-# USB Mounts
+# Drive Mounts
 sudo bash /scripts/mnt_drives.sh
 
 # Start Docker
