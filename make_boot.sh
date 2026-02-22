@@ -6,7 +6,7 @@ if [ ! -f "/scripts/boot.sh" ]; then
 #!/bin/bash
 
 # USB Mounts
-sudo bash /scripts/mnt_USB.sh
+sudo bash /scripts/mnt_drives.sh
 
 # Start Docker
 sudo systemctl start docker
