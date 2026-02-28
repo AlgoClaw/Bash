@@ -20,10 +20,10 @@ sudo chmod -R 777 "${DIR2}"
 
 sudo rsync \
 --partial \
---append-verify \
 --relative \
 --progress \
 --archive \
 --delete-after \
+--inplace \
 "${DIR1}./" \
 "${DIR2}"
