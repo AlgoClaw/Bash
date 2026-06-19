@@ -1,4 +1,5 @@
 #!/bin/bash
+# Version: 2026.06.19.10.31.43
 
 # sudo bash "/path/to/fcn_mntLAN.sh" "/path/to/local/mntpnt" "192.168.xx.xx" "/path/to/remote/dir" "username" "password" "port"
 # sudo bash "/path/to/fcn_mntLAN.sh" "/mnt/LAN/ABC" "192.168.56.78" "/root"
@@ -13,11 +14,11 @@
 # 4. Directory empty?
 #  4.1. No -  Do NOT mount, print error, EXIT
 # 5. IP reachable?
-#  5.1. No -  Do NOT mount, print error, EXIT
+#  5.1. No -  Do NOT mount, clean up empty dir, print error, EXIT
 # 6. (Attempt) mount.
 # 7. Directory already mountpoint?
 #  7.1. Yes - Print success, EXIT
-#  7.2. No  - Print error, EXIT
+#  7.2. No  - Print error, clean up empty dir, EXIT
 
 LOCDIR="${1%/}"
 REMIPA="${2}"
@@ -26,14 +27,22 @@ USNAME="${4:-a}"
 PASSWD="${5:-a}"
 PORTNO="${6:-445}"
 
-# Script Direcotry
+# Script Directory
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ) >/dev/null
 
 # Install Dependencies
-sudo bash $SCRIPT_DIR/fcn_install.sh "net-tools" & wait
-sudo bash $SCRIPT_DIR/fcn_install.sh "cifs-utils" & wait
+sudo bash "$SCRIPT_DIR/fcn_install.sh" "net-tools" & wait
+sudo bash "$SCRIPT_DIR/fcn_install.sh" "cifs-utils" & wait
 
 #####
+
+# Cleanup Function for Failed Mounts
+cleanup_empty_dir() {
+  # Unlock the directory and remove it. rmdir natively fails if not empty.
+  sudo chattr -i "${LOCDIR}" >/dev/null 2>&1
+  sudo rmdir "${LOCDIR}" >/dev/null 2>&1
+  echo "Cleaned up empty mountpoint directory (${LOCDIR})"
+}
 
 # 1. Check if LOCDIR exists. If not, create LOCDIR.
 sudo mkdir -p "${LOCDIR}" >/dev/null
@@ -42,20 +51,23 @@ sudo mkdir -p "${LOCDIR}" >/dev/null
 sudo chattr +i "${LOCDIR}" >/dev/null 2>&1
 
 # 3. Check if LOCDIR is already a mountpoint. If so, exit.
-if [[ $(sudo bash $SCRIPT_DIR/fcn_chckmnt.sh "${LOCDIR}") == 1 ]]; then
+if [[ $(sudo bash "$SCRIPT_DIR/fcn_chckmnt.sh" "${LOCDIR}") == 1 ]]; then
   echo "Mountpoint already mounted. Exiting. (${LOCDIR})"
   exit
 fi
 
 # 4. Check if LOCDIR is empty. If not, exit.
-if [[ $(sudo bash $SCRIPT_DIR/fcn_chckdir4contents.sh "${LOCDIR}") == 1 ]]; then
+if [[ $(sudo bash "$SCRIPT_DIR/fcn_chckdir4contents.sh" "${LOCDIR}") == 1 ]]; then
   echo "Mountpoint is NOT empty. Exiting. Unlocking (sudo chattr -i ${LOCDIR}) required to edit mountpoint."
   exit
 fi
 
 # 5. Check if IP is reachable. If not, exit.
-ping -c 1 -n "${REMIPA}" >/dev/null || \
-{ echo "Mount FAILED. IP unreachable. Exiting. (//${REMIPA}${REMDIR} NOT mounted at ${LOCDIR})"; exit; }
+if ! ping -c 1 -n "${REMIPA}" >/dev/null; then
+  echo "Mount FAILED. IP unreachable. Exiting. (//${REMIPA}${REMDIR} NOT mounted at ${LOCDIR})"
+  cleanup_empty_dir
+  exit
+fi
 
 # 6. (Attempt) Mounting {REMIPA}{REMDIR} to LOCDIR
 # Determine the target user for ownership
@@ -64,9 +76,10 @@ TARGET_USER="${SUDO_USER:-$(whoami)}"
 # Uses TARGET_USER to assign ownership dynamically
 sudo mount -t cifs -o port="${PORTNO}",username="${USNAME}",password="${PASSWD}",uid=$(id -u "${TARGET_USER}"),gid=$(id -g "${TARGET_USER}") "//${REMIPA}${REMDIR}" "${LOCDIR}" >/dev/null
 
-# 7. Check if LOCDIR is already a mountpoint. If so, print success. If not, print error.
-if [[ $(sudo bash $SCRIPT_DIR/fcn_chckmnt.sh "${LOCDIR}") == 1 ]]; then
+# 7. Check if LOCDIR is already a mountpoint. If so, print success. If not, print error and cleanup.
+if [[ $(sudo bash "$SCRIPT_DIR/fcn_chckmnt.sh" "${LOCDIR}") == 1 ]]; then
   echo "Mount SUCCESS (//${REMIPA}${REMDIR} mounted at ${LOCDIR})"
 else
   echo "Mount FAILED. Last step. (//${REMIPA}${REMDIR} NOT mounted at ${LOCDIR})"
+  cleanup_empty_dir
 fi
